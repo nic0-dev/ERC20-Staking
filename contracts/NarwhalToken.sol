@@ -20,7 +20,6 @@ contract NarwhalToken is ERC20("Narhwal Token", "NWL") {
         if (_stakeTimestamp[msg.sender] == 0) {
             _stakeTimestamp[msg.sender] = block.timestamp;
         }
-        
     }
 
     function getCurrentReward(address staker) public view returns (uint256){
@@ -32,7 +31,7 @@ contract NarwhalToken is ERC20("Narhwal Token", "NWL") {
     function withdraw() public {
         uint256 totalStakes = _totalStake[msg.sender];
         uint256 rewards = getCurrentReward(msg.sender);
-        // uint 256 totalWithdrawbleAmount = totalStakes + rewards;
+
         _mint(msg.sender, rewards);
         _transfer(address(this), msg.sender, totalStakes);
     }
